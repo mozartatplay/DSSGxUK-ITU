@@ -11,6 +11,7 @@ import requests
 import logging
 import gzip
 import sys
+from data_gathering.country_codes import *
 
 """POPULATION DATA"""
 
@@ -124,11 +125,11 @@ def get_cell_data(country_code, token, wd):
 
 def osm_to_json(country_code):    
     overpass_url = "http://overpass-api.de/api/interpreter"
-
+    alpha2 =  [i for i in country_iso3166 if i['alpha-3'] == country_code.upper()][0]['alpha-2']
     overpass_query = f"""
     [out:json][timeout:600];
     // gather results
-    area["ISO3166-1"="""+country_code.upper()[:2]+"""]->.searchArea;
+    area["ISO3166-1"="""+alpha2+"""]->.searchArea;
     (
       // query part for: “amenity=school”
       node[amenity=school](area.searchArea);
