@@ -8,7 +8,6 @@ import pandas as pd
 import numpy as np
 
 
-
 def fb_api_init(access_token, ad_account_id):
     print('Initializing the Facebook Marketing API...')
     api = FacebookAdsApi.init(access_token=access_token)

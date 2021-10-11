@@ -40,6 +40,7 @@ def get_speedtest_url(service_type: str, year: int, q: int) -> str:
     base_url = "https://ookla-open-data.s3.amazonaws.com/shapefiles/performance"
     url = f"{base_url}/type={service_type}/year={dt:%Y}/quarter={q}/{dt:%Y-%m-%d}_performance_{service_type}_tiles.zip"
     name = f"{dt:%Y-%m-%d}_performance_{service_type}_tiles.zip"
+    print ('The URL: ',url)
     return url, name
 
 

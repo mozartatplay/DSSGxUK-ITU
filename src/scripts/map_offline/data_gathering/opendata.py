@@ -85,7 +85,7 @@ class SpeedtestData(OpenData):
             print('Reading speedtest data for ' + self.country_name + '...')
             df_tiles = pd.read_csv(country_tile_path)
             gdf_tiles = df_to_gdf(df_tiles)
-            self.data = gdf_tiles[['avg_d_kbps', 'avg_u_kbps', 'geometry']]
+            self.data = gdf_tiles[['avg_d_kbps', 'avg_u_kbps', 'avg_lat_ms', 'tests', 'devices', 'geometry']]
         else:
             # CHECK SPEEDTEST DATA IS ALREADY IN THE DIRECTORY
             if os.path.exists(self.wd + str(self.tile_name)):
@@ -111,7 +111,7 @@ class SpeedtestData(OpenData):
     
     def tile_prep(self):
         tiles = gp.sjoin(self.data, self.country_geo, how="inner", op="within")
-        tiles = tiles[['avg_d_kbps', 'avg_u_kbps', 'geometry']]
+        tiles = tiles[['avg_d_kbps', 'avg_u_kbps', 'avg_lat_ms', 'tests', 'devices', 'geometry']]
 
         country_tile_path = self.wd + self.tile_name[:-4] + '_' + self.country_code.lower() + '.csv'
 
