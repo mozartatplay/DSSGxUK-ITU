@@ -34,6 +34,7 @@ def point_delivery_estimate(my_account, lat, lon, radius):
         {'latitude': lat, 'longitude': lon, 'radius': radius, 'distance_unit': 'kilometer'},
     ],
     },
+    "wireless_carrier": "Wifi",
     }
 
     params = {'optimization_goal': 'REACH',
@@ -41,7 +42,7 @@ def point_delivery_estimate(my_account, lat, lon, radius):
     }
 
     delivery_estimate = my_account.get_delivery_estimate(params=params)
-    return delivery_estimate[0]['estimate_dau'], delivery_estimate[0]['estimate_mau'], delivery_estimate[0]['estimate_ready']
+    return delivery_estimate[0]['estimate_dau'], delivery_estimate[0]['estimate_mau_upper_bound'], delivery_estimate[0]['estimate_ready']
 
 
 
